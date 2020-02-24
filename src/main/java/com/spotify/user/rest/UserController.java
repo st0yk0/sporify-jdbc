@@ -1,5 +1,7 @@
 package com.spotify.user.rest;
 
+import com.spotify.song.repository.Song;
+import com.spotify.song.service.SongService;
 import com.spotify.user.repository.User;
 import com.spotify.user.service.UserService;
 import org.springframework.web.bind.annotation.*;
@@ -12,8 +14,11 @@ public class UserController {
 
     private final UserService userService;
 
-    public UserController(UserService userService) {
+    private final SongService songService;
+
+    public UserController(UserService userService, SongService songService) {
         this.userService = userService;
+        this.songService = songService;
     }
 
     @PostMapping
@@ -39,5 +44,10 @@ public class UserController {
     @PutMapping
     public void update(User user) {
         userService.update(user);
+    }
+
+    @GetMapping("/song/{id}")
+    public String playSong(int id) {
+        return "Playing..." + songService.getUserSong(id);
     }
 }

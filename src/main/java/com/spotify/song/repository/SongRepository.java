@@ -68,4 +68,10 @@ public class SongRepository {
 
         jdbcTemplate.update(sql, params);
     }
+
+    public String getUserSong(final int id) {
+        String sql = "SELECT * FROM songs s WHERE s.id = " + id;
+        Song songDetails = jdbcTemplate.queryForObject(sql, new HashMap<>(), new SongRowMapper());
+        return songDetails.getSongName();
+    }
 }

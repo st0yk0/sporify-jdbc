@@ -40,4 +40,9 @@ public class SongServiceImpl implements SongService {
     public void update(Song song) {
         songRepository.update(song);
     }
+
+    @Override
+    public String getUserSong(int id) {
+        return songRepository.getUserSong(id);
+    }
 }

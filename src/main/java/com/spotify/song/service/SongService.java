@@ -16,4 +16,6 @@ public interface SongService {
     List<Song> getAllSongs();
 
     void update(Song song);
+
+    String getUserSong(int id);
 }
